@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anagram checker</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style-1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="pal-card p-4">
+
+            <label for="letter-1" class="form-label fs-4">Enter First Word:</label>
+            <input type="text" id="letter-1" class="form-control pal-input mb-3" placeholder="Type here..." />
+
+            <label for="letter-2" class="form-label fs-4">Enter Second Word:</label>
+            <input type="text" id="letter-2" class="form-control pal-input mb-3" placeholder="Type here..." />
+
+            <button id="proceed" class="pal-btn">Go!</button>
+            <button id="clear" class="pal-btn">clear</button>
+            <a href="./index.html">
+                <button class="pal-btn text-decoration-none text-dark">Back</button>
+            </a>
+            <h2 id="ans" class="mt-4 fs-5"></h2>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#proceed").on("click", function () {
+                let ans = document.getElementById("ans");
+                let str1 = $("#letter-1").val();
+                let newStr1 = str1.split("").sort().join("");
+
+                let str2 = $("#letter-2").val();
+                let newStr2 = str2.split("").sort().join("");
+
+                console.log(newStr1);
+                console.log(newStr2);
+                if (str1 == "" || str2 == "") {
+                    ans.innerHTML = "Please write something!!";
+                }else if (newStr1 == newStr2) {
+                    ans.innerHTML = "Yes, They're Anagram strings!!";
+                } else {
+                    ans.innerHTML = "Nope, They're NOT an Anagram strings!!";   
+                }
+            });
+            $("#clear").on("click", function () {
+                $("#letter-1").val("");
+                $("#letter-2").val("");
+                $("#ans").text("");
+             })
+        });
+    </script>
+</body>
+
+</html>

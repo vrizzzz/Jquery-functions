@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime numbers</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style-1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="pal-card p-4 text-center">
+
+            <h1 class="text-center mb-4">Prime Numbers</h1>
+            <div id="box" class="mb-3 d-flex flex-wrap gap-2 justify-content-center"></div>
+
+            <h4 id="ans" class="text-center mt-4" style="height: 50px;"></h4>
+
+            <button class="pal-btn" id="proceed">Go!</button>
+            <button id="clear" class="pal-btn">clear</button>
+            <a href="./index.html">
+                <button class="pal-btn text-decoration-none text-dark">Back</button>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            let number = prompt("Enter no. of inputs : ");
+            let num = parseInt(number);
+            let ans = document.getElementById("ans");
+            let box = document.getElementById("box");
+
+            if (num <= 0 || isNaN(num)) {
+                alert("Invalid Input");
+                number = prompt("Enter no. of inputs : ");
+                num = parseInt(number);
+            }
+
+            for (let i = 0; i < num; i++) {
+                box.innerHTML += `<input class="pal-input text-center" type="number" id="num${i}" style="width: 60px;">`;
+            }
+
+            $("#proceed").on("click", function () {
+                let arr = [];
+                for (let i = 0; i < num; i++) {
+                    let val = parseInt(document.getElementById(`num${i}`).value);
+                    if (isNaN(val)) {
+                        continue
+                    };
+
+                    if (val < 0) {
+                        ans.innerHTML = `No NEGATIVE values please!`;
+                        return;
+                    }
+
+                    if (val < 2) {
+                        continue
+                    } ;
+
+                    let flag = false;
+                    for (let j = 2; j < val; j++) {
+                        if (val % j == 0) {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (flag == false) {
+                        arr.push(val);
+                    }
+                }
+
+                if(arr.length > 0){
+                    ans.innerHTML = `Prime Numbers : ${arr}`;
+                }else{
+                    ans.innerHTML = `No Prime Numbers!`;
+                }
+            });
+
+            $("#clear").on("click", function () {
+                location.reload();
+            })
+        });
+    </script>
+</body>
+
+</html>

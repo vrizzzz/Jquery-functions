@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word-info</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style-1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="pal-card p-4">
+
+            <label for="letter" class="form-label fs-4">Enter a Word :</label>
+            <input type="text" id="letter" class="form-control pal-input mb-3" placeholder="Type here..." />
+
+            <button id="proceed" class="pal-btn">Go!</button>
+            <button id="clear" class="pal-btn">clear</button>
+            <a href="./index.html">
+                <button class="pal-btn text-decoration-none text-dark">Back</button>
+            </a>
+            <h2 id="ans" class="mt-4 fs-5"></h2>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#proceed").on("click", function () {
+                let ans = document.getElementById("ans");
+                let str = $("#letter").val().trim().toLowerCase().split("");
+                vowel = [];
+                cons = [];
+                vowelCount = 0;
+                consCount = 0;
+
+                if(str == ""){
+                    ans.innerHTML = `Enter a Word Please!`;
+                    return;
+                }
+
+                for(let i = 0 ; i < str.length ;i++){
+                    if(str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == '0' || str[i] == 'u'){
+                        consCount++;
+                        cons.push(str[i]);
+                    }else{
+                        vowelCount++;
+                        vowel.push(str[i]);
+                    }
+                }
+
+                ans.innerHTML = `Vowels : ${vowel.join(",")} <br/> Count : ${vowelCount} <br/><br/> Consonants : ${cons.join(",")} <br/> Count : ${consCount}`;
+            });
+
+            $("#clear").on("click", function () {
+                $("#letter").val("");
+                $("#ans").text("");
+             })
+        });
+    </script>
+</body>
+
+</html>
